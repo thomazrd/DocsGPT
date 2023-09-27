@@ -23,11 +23,18 @@ Say goodbye to time-consuming manual searches, and let <strong>DocsGPT</strong> 
   
 </div>
 
+### Enterprise Solutions: 
+
+When deploying your DocsGPT to a live environment, we're eager to provide personalized assistance. Reach out to us via email [here]( mailto:contact@arc53.com?subject=DocsGPT%20Enterprise&body=Hi%20we%20are%20%3CCompany%20name%3E%20and%20we%20want%20to%20build%20%3CSolution%3E%20with%20DocsGPT) to discuss your project further, and our team will connect with you shortly.
+
+### [🎉 Join the Hacktoberfest with DocsGPT and Earn a Free T-shirt! 🎉](https://github.com/arc53/DocsGPT/blob/main/HACKTOBERFEST.md)
+
 ![video-example-of-docs-gpt](https://d3dg1063dc54p9.cloudfront.net/videos/demov3.gif)
+
 
 ## Roadmap
 
-You can find our [Roadmap](https://github.com/orgs/arc53/projects/2) here, please don't hesitate contributing or creating issues, it helps us make DocsGPT better!
+You can find our [Roadmap](https://github.com/orgs/arc53/projects/2) here. Please don't hesitate to contribute or create issues, it helps us make DocsGPT better!
 
 ## Our open source models optimised for DocsGPT:
 
@@ -51,13 +58,13 @@ If you don't have enough resources to run it you can use bitsnbytes to quantize
  
  [Join Our Discord](https://discord.gg/n5BX8dh8rU)
  
- [Guides](https://github.com/arc53/docsgpt/wiki)
+ [Guides](https://docs.docsgpt.co.uk/)
 
  [Interested in contributing?](https://github.com/arc53/DocsGPT/blob/main/CONTRIBUTING.md)
 
- [How to use any other documentation](https://github.com/arc53/docsgpt/wiki/How-to-train-on-other-documentation)
+ [How to use any other documentation](https://docs.docsgpt.co.uk/Guides/How-to-train-on-other-documentation)
 
- [How to host it locally (so all data will stay on-premises)](https://github.com/arc53/DocsGPT/wiki/How-to-use-different-LLM's#hosting-everything-locally)
+ [How to host it locally (so all data will stay on-premises)](https://docs.docsgpt.co.uk/Guides/How-to-use-different-LLM)
 
 
 ## Project structure
@@ -71,16 +78,18 @@ If you don't have enough resources to run it you can use bitsnbytes to quantize
 
 ## QuickStart
 
-Note: Make sure you have docker installed
+Note: Make sure you have Docker installed
 
-1. Dowload and open this repository with `git clone https://github.com/arc53/DocsGPT.git`
-2. Create an .env file in your root directory and set the env variable OPENAI_API_KEY with your openai api key and  VITE_API_STREAMING to true or false, depending on if you want streaming answers or not
+1. Download and open this repository with `git clone https://github.com/arc53/DocsGPT.git`
+2. Create a .env file in your root directory and set the env variable OPENAI_API_KEY with your OpenAI API key and  VITE_API_STREAMING to true or false, depending on if you want streaming answers or not
    It should look like this inside:
    
    ```
    OPENAI_API_KEY=Yourkey
    VITE_API_STREAMING=true
+   SELF_HOSTED_MODEL=false
    ```
+   See optional environment variables in the `/.env-template` and `/application/.env_sample` files.
 3. Run `./run-with-docker-compose.sh`
 4. Navigate to http://localhost:5173/
 
@@ -89,7 +98,7 @@ To stop just run Ctrl + C
 ## Development environments
 
 ### Spin up mongo and redis
-For development only 2 containers are used from docker-compose.yaml (by deleting all services except for redis and mongo). 
+For development only 2 containers are used from docker-compose.yaml (by deleting all services except for Redis and Mongo). 
 See file [docker-compose-dev.yaml](./docker-compose-dev.yaml).
 
 Run
@@ -110,7 +119,7 @@ export MONGO_URI=mongodb://localhost:27017/docsgpt
 ```
 2. Prepare .env file
 Copy `.env_sample` and create `.env` with your OpenAI API token
-3. (optional) Create a python virtual environment
+3. (optional) Create a Python virtual environment
 ```commandline
 python -m venv venv
 . venv/bin/activate
