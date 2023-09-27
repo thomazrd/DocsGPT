@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 on:
   pull_request:
     branches:
-      - master
+      - main
 env:
   CLUSTER_NAME: cluster
   INFRA_SSH_HOST: ssh.tiggomark.com.br
