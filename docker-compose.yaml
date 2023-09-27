@@ -1,10 +1,11 @@
 version: "3.9"
+
 services:
   frontend:
     build: ./frontend
     environment:
       - VITE_API_HOST=http://localhost:7091
-      - VITE_API_STREAMING=$VITE_API_STREAMING
+      - VITE_API_STREAMING=true
     ports:
       - "5173:5173"
     depends_on:
@@ -13,28 +14,27 @@ services:
   backend:
     build: ./application
     environment:
-      - API_KEY=$OPENAI_API_KEY
-      - EMBEDDINGS_KEY=$OPENAI_API_KEY
+      - API_KEY=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
+      - EMBEDDINGS_KEY=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
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/1
       - MONGO_URI=mongodb://mongo:27017/docsgpt
-      - SELF_HOSTED_MODEL=$SELF_HOSTED_MODEL
     ports:
       - "7091:7091"
     volumes:
-      - ./application/indexes:/app/application/indexes
-      - ./application/inputs:/app/application/inputs
-      - ./application/vectors:/app/application/vectors
+      - ./application/indexes:/app/indexes
+      - ./application/inputs:/app/inputs
+      - ./application/vectors:/app/vectors
     depends_on:
       - redis
       - mongo
 
   worker:
     build: ./application
-    command: celery -A application.app.celery worker -l INFO
+    command: celery -A app.celery worker -l INFO
     environment:
-      - API_KEY=$OPENAI_API_KEY
-      - EMBEDDINGS_KEY=$OPENAI_API_KEY
+      - API_KEY=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
+      - EMBEDDINGS_KEY=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
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/1
       - MONGO_URI=mongodb://mongo:27017/docsgpt
